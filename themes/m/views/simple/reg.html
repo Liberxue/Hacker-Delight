@@ -1,0 +1,52 @@
+{echo:JS::import('form')}
+  <div class="com-content-area" id="js-com-content-area">
+<!--content-->
+ <div class="page-role login-page">
+ <div class="page-title"><a href="javascript:history.back();void(0)" class="return">返 回</a>用户注册<a href="{url:/simple/login}">登录<i></i></a></div>
+	<form action="{url:/simple/reg_act}" method="post" callback="checkReadme" style="padding-left:15px;"class="pxui-form-info">
+			<div><span>邮&nbsp;&nbsp;&nbsp;&nbsp;箱：</span><p><span><input class="input"  name="email" id="email"  pattern="email" alt="邮箱格式不正确"placeholder="邮箱" type="text" value=""/></span></p></div>	 
+			<div><span>密&nbsp;&nbsp;&nbsp;&nbsp;码：</span><p><span><input type="password" bind="repassword" minlen=6 maxlen=20 class="input" name="password" pattern="required" alt="6-20任意字符组合"></span></p></div>
+		    <div><span>确认密码:</span><p><span><input type="password"  minlen=6 maxlen=20  bind="password" class="input" name="repassword" pattern="required" alt="6-20任意字符组合"></span></p></div>
+		 <div><span>验证码：</span><p><span><input type="text" class="input" name="verifyCode" id="verifyCode"  pattern="\w{4}" maxlength="4" ><img id="captcha_img"  src="{url:/simple/captcha/h/40/w/120}"><label><a href="javascript:void(0)" class="red" onclick="document.getElementById('captcha_img').src='{url:/simple/captcha/h/40/w/120/random/}'+Math.random()">换一张</span></p></div>
+		<div><span>&nbsp;</span><p><span><input id="readme" type="checkbox"><label></label><label>我已阅读并同意《菜篮子商城用户注册协议》</span></p></div>
+			<dt></dt><dd style="padding-left:100px;"><input type="submit" class="pxui-light-button" value="同意协议，立即注册"></dd>
+	</form>
+<div class="login-note mt20">
+	<ul>
+		<li><h4 class="pxui-color-blue">我已经注册， <a href="{url:/simple/login}" class="red">登录</a></h1></li>
+	</ul>
+</div>
+</div>
+<script type="text/javascript">
+	$("input[name='email']").on("change",function(event){
+		if(autoValidate.validate(event)){
+			$.post("{url:/ajax/email/email/}"+$(this).val(),function(data){
+			autoValidate.showMsg({id:document.getElementById('email'),error:!data['status'],msg:data['msg']});
+		},'json');
+		}
+	})
+	$("input[name='verifyCode']").on("change",function(){
+		$.post("{url:/ajax/verifyCode/verifyCode/}"+$(this).val(),function(data){
+			autoValidate.showMsg({id:document.getElementById('verifyCode'),error:!data['status'],msg:data['msg']});
+		},'json');
+	})
+	$("#readme").on("change",function(){
+		if($("#readme:checked").length>0)autoValidate.showMsg({id:document.getElementById('readme'),error:false,msg:''});
+		else autoValidate.showMsg({id:document.getElementById('readme'),error:true});
+	});
+	function checkReadme(e){
+		if(e) return false;
+		else{
+			if($("#readme:checked").length>0)return true;
+			{
+				autoValidate.showMsg({id:document.getElementById('readme'),error:true});
+				return false;
+			}
+		}
+	}
+	{if:isset($invalid)}
+		var form = new Form();
+		form.setValue('email', '{$email}');
+		autoValidate.showMsg({id:$("input[name='{$invalid['field']}']").get(0),error:true,msg:"{$invalid['msg']}"});
+	{/if}
+</script>

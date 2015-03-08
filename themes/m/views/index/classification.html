@@ -1,0 +1,28 @@
+		<link type="text/css" rel="stylesheet" href="{url:#css/home/index.css}"/>
+		<link type="text/css" rel="stylesheet" href="{url:#css/list/style.css}"/>
+            <div class="com-content-area" id="js-com-content-area">
+ <!--content-->
+ <div class="page-role style-page">
+	<div class="pxui-area">
+		<div class="pxui-tab pxui-tab-nav pxui-tab-no-top">
+			<a href="/"><i></i>首页<span></span></a>
+			<a class="selected"><i></i>分类<span></span></a>
+			<a href="{url:/index/brand}"><i></i>品牌<span></span></a>
+			<a href="../tuan/default.htm"><i></i>团购<span></span></a>
+		</div>
+		<div class="pxui-list">	
+		{set:$current_category_ids='';$parent_category='';}
+{list:items=$category item=$categ}
+<a href="{url:/index/category/cid/$categ[id]}">
+<span></span>
+	<b>{if:isset($categ['id'])}
+ {set:$current_category_ids=$categ['id'].',';$parent_category=$categ['id'];}
+  {/if} {$categ['title']}</b>
+<i class="arrow-right"></i></a>
+<p>{set:$current_category_ids = trim($current_category_ids,',')}
+ {query:name=goods as go fields=br.name,br.id join=left join brand as br on go.brand_id eq br.id where=go.category_id in($current_category_ids) group=go.brand_id cache=true}{if:$item['name']!=''}
+<a href="{url:/index/category/cid/$parent_category/sort/0/brand/$item[id]}">{$item['name']}</a>&nbsp;&nbsp;&nbsp;&nbsp;{/if}{/query}</p>{/list}                                          
+		</div>
+	</div>
+</div>
+

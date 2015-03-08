@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>{if:isset($seo_title) && isset($site_title) && ($seo_title == $site_title)}{$seo_title}{else:}{$seo_title}-{$site_title}{/if}</title>
+	<link type="image/x-icon" href="{url:@favicon.ico}" rel="icon">
+	<link type="text/css" rel="stylesheet" href="{url:#css/common.css}" />
+	<link type="text/css" rel="stylesheet" href="{url:#css/simple.css}" />
+	{echo:JS::import('jquery');}
+	<script type='text/javascript' src="{url:#js/common.js}"></script>
+	<!--[if IE 6]>
+		<script src="{url:#js/DD_belatedPNG-min.js}"></script>
+		<script>DD_belatedPNG.fix('.ie6png');</script>
+	<![endif]-->
+</head>
+<body class="screen_960">
+	<!--S 头部 -->
+	<div id="header" class="clearfix">
+		<div class="header-main" style="border-bottom:#7c0000 2px solid;">
+			<div class="wrap">
+				<div class="logo "><a href="{url:/index/index}"><img class="ie6png" src="{url:@$site_logo}" style="max-height:74px;"></a></div>
+			</div>
+		</div>
+	</div>
+	<!--E 头部 -->
+	<!--S content-->
+	<div id="content">
+		<div class="wrap">
+		{if:isset($msg)}
+		<div class="message-box mt5" >
+			<div class="message-head"><div class="message_{$msg[0]} ie6png">{$msg[1]}</div><i class="fail "></i></div>
+			<div class="message-content">
+			</div>
+		</div>
+		{/if}
+			{__viewcontents}
+		</div>
+	</div>
+	<!--E content-->
+	<!--S 底部 -->
+	<div class="footer-links">
+					<p><a><b>友情连接：</b></a><a href="http://www.cvsyun.com">礼县便利云科技有限公司</a></p>
+				</div>
+				<div class="copyright">
+					<div>{query:name=nav where=type eq 'bottom' order=`sort` desc}
+					<a href="{if:strstr($item['link'],'http://')===false}{url:$item[link]}{else:}{$item['link']}{/if}" target="{if:$item['open_type']==1}_blank{else:}_self{/if}">{$item['name']}</a>
+					{/query}</div>
+					<!--S 济南泰创软件科技有限公司保留所有版权，非授权用户严禁删除版权信息；擅自删除，后果自负，您的支持是我们成长的动力。-->
+					<div><span>Powered by <a href="http://www.cvsyun.com><b style="color: #7c0000">...</b><b style="color: #666">013</b></a></span> © 2014 <a href="http://www.cvsyun.com">cvsyun.com</a> . 保留所有权利 。{$site_icp} </div>
+					<!--S 济南泰创软件科技有限公司保留所有版权，非授权用户严禁删除版权信息；擅自删除，后果自负，您的支持是我们成长的动力。-->
+				</div>
+			</div>
+
+	</div>
+	<!--E 底部 -->
+</body>
+</html>

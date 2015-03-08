@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+    <head>
+	<meta charset="UTF-8">
+	<title>{if:isset($seo_title) && isset($site_title) && ($seo_title == $site_title)}{$seo_title}{else:}{$seo_title}-{$site_title}{/if}</title>
+	<meta name="description" content="{$seo_description}">
+	<meta name="Keywords" content="{$seo_keywords}">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link type="text/css" rel="stylesheet" href="{url:#css/com/com.css}"/>
+	<link href="{url:@static/images/favicon.png}" rel="apple-touch-icon-precomposed">
+	<link type="image/x-icon" href="{url:@favicon.ico}" rel="icon">
+		<!--E 只引入一次-->
+	<script type="text/javascript">
+	 var server_url = '{url:@}__con__/__act__';
+	  var Tiny = {user:{name:'{$user['name']|''}',id:'{$user['id']|0}',online:{$user['id']|'true'|'false'}}};
+	</script>
+	{echo:JS::import('jquery');}
+		<script type='text/javascript' src="{url:#js/common.js}"></script>
+    <link rel="stylesheet" type="text/css" href="{url:#js/jslider.css}" />
+    <script type='text/javascript' src="{url:#js/jslider.js}"></script>
+			<script src="{url:#js/com/com.js}"></script>
+<script>
+jQuery(function($) {
+	$(window).resize(function(){
+		var width=$('#js-com-header-area').width();
+		$('.touchslider-item a').css('width',width);
+		$('.touchslider-viewport').css('height',300*(width/640));
+	}).resize();	
+	$(".touchslider").touchSlider({mouseTouch: true, autoplay: true});
+});
+</script>	
+	</head>
+	        <div class="com-content">
+             					<script>
+                           
+                        function open_notice(id){
+                            setCookie('touch_notice_close',1);
+                            var url = 'new/info/'+id+'.html';
+                            window.location.href=url;
+                        }   
+                           
+                        var touch_notice_close = getCookie('touch_notice_close');
+                        if(touch_notice_close == '1' && typeof(document.getElementById('js-com-notification2')) != 'undefined' && document.getElementById('js-com-notification2') != null){
+                            document.getElementById('js-com-notification2').style.display = 'none';
+                        }
+			</script>
+	<body>
+		<script type="text/javascript">if(screen.width < 1200) { document.getElementsByTagName('body')[0].className = 'screen_960'; }</script>
+		<!--S 头部 -->
+		     <div class="com-header-area" id="js-com-header-area">
+                <a href="default.htm" class="com-header-logo"></a>
+				<dfn></dfn>
+                <p>
+                    <a class="com-header-search" id="js-com-header-search"><del></del></a>
+                    <a href="{url:/simple/login}" class="com-header-user "><del></del></a>
+                    <i></i>
+                    <a href="cart/default.htm" class="com-header-cart "><b id="header-cart-num">0</b><del></del></a>
+                </p>
+				<div class="clear"></div>
+                <form action="/s.php" method="post">
+                    <strong>
+                        <input type="text" name="keyword" id="js-com-search-text" value=""/>
+                        <input type="submit" value=" "/>
+                    </strong>
+                    <div id="js-com-search-recommend">
+                        <div></div>
+                                                <a href="p-_m0003s0017_1.html@asc=id"  style="color:#000000	">女单鞋</a>
+                                                <a href="p-m0001_id;1.html"  style="color:#ed1749">运动新品</a>
+                                                <a href="p-m0001s0014_1.html"  style="color:#000000">篮球鞋</a>
+                         
+                    </div>
+                </form>
+            </div>
+				{__viewcontents}
+
+		<!--E content-->
+        <!--E 底部 -->
+		</div>
+                		<div class="com-footer-area" id="js-com-footer-area">
+			<div class="com-footer-nav">
+				<a href="/">首页</a><a href="{url:/index/help_index}">帮助中心</a><a href="{url:/index/help_index}">反馈建议</a>
+			</div>
+			<div class="com-footer">
+				<p class="com-policy">
+					<strong>
+						<a class="pxui-color-white" href="javascript:void(0)">
+							<i></i>
+							<span>自营商品<br/>
+							满99包邮</span>
+						</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a class="pxui-color-white" href="javascript:void(0)">
+							<i style="background-position:-40px -108px;"></i>
+							<span>15天无理由<br/>
+							免邮退换货</span>
+						</a>
+					</strong>
+				</p>
+				<br/>
+				<br/>
+				<p>
+					<strong>
+                                            						<a style="color:#769fbf;" href="login/default.htm">登录</a>&nbsp;&nbsp;
+						<a style="color:#769fbf;" href="register/default.htm">注册</a>
+                                            					</strong>
+				</p>
+				<br/>
+				<p>
+					<strong>
+						<a href="#">极速版</a>&nbsp;&nbsp;
+						<a href="#">触屏版</a>&nbsp;&nbsp;
+						<a href="#">客户端</a>
+					</strong>
+				</p>
+					<div> </div>
+				<br/>
+				<span>Powered by<a href="http://www.cvsyun.com">礼县绝影</a></span>©2015<a href="http://www.cvsyun.com">技术支持</a><br/>{$site_icp}
+                                <br /> 
+                                <p style="text-align: left;border-bottom:none;display:table-cell; padding-left: 10px; padding-right: 10px;">友情链接：<a href='http://www.cvsyun.com'>礼县绝影科技 </a>
+</p></div></div></div> <div id="shopping-cart" >
+
+			<div id="card-wrap" class="ie6png">
+				<div class="clearfix" style="height: 32px;"><a href="{url:/simple/cart}" class="fr btn btn-gray" style="padding: 2px 6px;font-size: 12px;" target="_blank">查看购物车</a></div>
+				<div id="card-list">
+					{set:$total=0.00;}
+					{list:items=$cart}
+					{set:$total += $item['amount'];}
+					<div class="card-item" id="{$item['id']}">
+						<div class="pic">
+							<a class="card-pic" href="{url:/index/product/id/$item[goods_id]}" target="_blank" title="{$item['name']}"><img src="{url:@$item[img]}" width="50" height="50"></a></div>
+							<div class="spec">
+								{list:items=$item['spec'] item=$spec}
+								<p title="{$spec['name']}:{$spec['value'][2]}">{$spec['value'][2]}</p>
+								{/list}
+							</div>
+							<div class="num">{$item['num']}</div>
+							<div class="price" title="{$item['amount']}">{$item['amount']}</div>
+							<a class="icon-close ie6png" productid="{$item['id']}"></a>
+						</div>
+						{/list}
+					</div>
+				</div>
+				<div id="shopping-bar-box" >
+					<div id="shopping-bar">
+						<div class="fl tl" style="padding-left:8px;" > <i class="icon-cart ie6png" style="zoom:1;"></i><span class="zoom:1;">购物车(<b class="cart-product-num">{echo:count($cart)}</b>)</span></div> 
+						<span class="fr tr">
+							<div style="padding-right:12px;"><span class="currency-symbol">{$currency_symbol}</span><b class="cart-total">{echo: sprintf("%01.2f",$total)}</b></div>
+						</span>
+					</div>
+					<a id="settlement" href="{url:/simple/cart}">去结算</a>
+				</div>
+			</div>		<!--S 购物车 -->
+			<script type="text/javascript">
+				$("#shopping-cart").on("mouseenter",function(){
+					if($("#card-wrap").position().top>-15)$("#card-wrap").animate({top:"-15px"},100);
+				});
+				$("#shopping-cart").on("mouseleave",function(){
+					if($("#card-wrap").position().top==-15)$("#card-wrap").animate({top:"-5px"},"fast");
+				});
+				$(document).on("click",function(e){
+					$("#card-wrap").animate({top:"-5px"},"fast");
+				})
+				$("#shopping-cart").on("click",function(e){
+					if (e.stopPropagation) {e.stopPropagation();}     
+					e.cancelBubble = true;
+				});
+				$("#shopping-bar").on("click",function(e){
+			//for(i in e)alert(i+'==='+e[i]);
+			var currentNode = e.currentTarget;
+			//alert(currentNode.id);
+			//if (e.stopPropagation) {e.stopPropagation();}     
+			//e.cancelBubble = true;
+			if($("#card-wrap").outerHeight()>360)$("#card-wrap").css("height","360px");
+			if($("#card-wrap").position().top>=-15)$("#card-wrap").animate({top:1-$("#card-wrap").outerHeight()},"fast");
+			else{
+				$("#card-wrap").animate({top:"-5px"},100);
+			}
+			return false;
+		});
+
+				function updateCart(data){
+					var card_items = '';
+					for(var i in data){
+						var spec = data[i]['spec'];
+						var spec_str = '';
+						for(var k in spec){
+							spec_str +="<p>"+spec[k]['value'][2]+"</p>";
+						}
+						card_items += '<div class="card-item" id="'+i+'"><div class="pic"><img src="{url:@}'+data[i]['img']+'" width="50" height="50"></div><div class="spec">'+spec_str+'</div><div class="num">'+data[i]['num']+'</div><div class="price">'+(data[i]['amount'])+'</div><a class="icon-close ie6png" productid="'+data[i]['id']+'"></a></div>';
+					}
+					$("#card-list").empty().append(card_items);
+					changeCartInfo();
+					bindDelEvent();
+				}
+				bindDelEvent();
+				function bindDelEvent(){
+					$("#shopping-cart .icon-close").on("click",function(){
+						var btn_close = $(this);
+						$.post("{url:/index/cart_del}",{id:btn_close.attr("productid")},function(){
+							btn_close.parent().remove();
+							changeCartInfo();
+							$("#card-wrap").css({top:1-$("#card-wrap").outerHeight()},"fast");
+						},"json");
+					});
+				}
+
+				function changeCartInfo(){
+					$(".cart-product-num").text($(".card-item").size());
+					var total = 0.00;
+					$(".card-item .price").each(function(){
+						total += parseFloat($(this).text());
+					});
+					$(".cart-total").text(total.toFixed(2));
+				}
+				$("#tags-list a").each(function(){
+					$(this).on("click",function(){
+						$("#search-keyword").val($(this).text());
+						$("#search-form").submit();
+					})
+				})
+        //导航高亮
+        $(".header-nav .nav li").has("a[href='{$url_index}']").addClass("current");
+        //
+        $(".header-cart dl,.category,.category .group dl").hover(
+        	function () {
+        		$(this).addClass("hover");
+        	},
+        	function () {
+        		$(this).removeClass("hover");
+        	}
+        	);
+        </script>
+        <!--E 购物车 --></body></html>

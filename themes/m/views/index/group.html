@@ -1,0 +1,30 @@
+{echo:JS::import('dialog?skin=brief');}
+{echo:JS::import('dialogtools');}
+{echo:JS::import('form');}
+<!--S 产品展示-->
+            <div class="com-content-area" id="js-com-content-area">
+                <!--content-->
+              			  <div class="page-role">
+<link type="text/css" rel="stylesheet" href="{url:#css/tuan/tuan.css}"/>
+<link type="text/css" rel="stylesheet" href="{url:#css/product.css}" />
+<script type='text/javascript' src="{url:#js/jquery.enlarge.js}"></script>
+<script type="text/javascript"> //{ document.getElementsByTagName('body')[0].className = 'screen_960'; }</script>
+<div class="page-role">
+    <div class="page-title"><a class="return" href="javascript:history.back();void(0)">返 回</a>商城▪团购</div>
+	
+		<div id="js-goodlist">
+            {query:name=groupbuy as gb fields=*,gb.id as id join=left join goods as go on gb.goods_id eq go.id  order=is_end , goods_num desc limit=12 page=1 id=$groupbuy}
+<div class="tuan-list">  <div class="img120"
+ <a href="{url:/index/groupbuy/id/$item[id]}"><dfn></dfn><img src="{echo:Common::thumb($item['img'],367,367)}"></a></div>
+			<a href="{url:/index/groupbuy/id/$item[id]}"  class="title">【{$item['title']}</a>
+			<a href="544218.html"  class="detail"><!----></a>
+			<p>
+				<span class="pxui-color-red">团购价：<b class="red">{$currency_symbol}{$item['price']}</span>
+				<del class="pxui-color-gray">{$currency_symbol}{$item['sell_price']}</del>
+				<span class="pxui-color-yellow"><span class="red">{$item['goods_num']}</span>人已购买</span>
+				<span class="tr">{if:$item['is_end']==0}<a href="{url:/index/groupbuy/id/$item[id]}" class="btn btn-mini">团购</a>{else:}<span class="btn btn-mini btn-disable">已结束</span>{/if}
+			</p>
+		</div>
+            {/list} 
+<div class="pxui-pages">{echo:$groupbuy->pageBar();}</div>
+<!--E 产品展示-->
